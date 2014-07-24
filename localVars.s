@@ -8,9 +8,9 @@ _main:
 	mov	%rsp, %rbp
 	
 	# save caller-save registers
-	#push %rax 
-	#push %rcx 
-	#push %rdx 
+	push %rax 
+	push %rcx 
+	push %rdx 
 	
 	# push parameters
 	push $5
@@ -24,9 +24,9 @@ _main:
 	add $24, %rsp
 
     # restore caller-save registers	
-	#pop %rdx 
-    #pop %rcx 
-    #pop %rax 
+	pop %rdx 
+    pop %rcx 
+    pop %rax 
 	
 	# epilog
 	pop	%rbp
@@ -62,11 +62,11 @@ add3:
 	mov -32(%rbp), %rax
 	
 	# restore callee-save registers
-	#mov -24(%rbp), %rdi 
-	#mov -16(%rbp), %rsi
-	#mov -8(%rbp), %rbx
+	mov -24(%rbp), %rdi 
+	mov -16(%rbp), %rsi
+	mov -8(%rbp), %rbx
 	
-	add $8, %rsp
+	add $32, %rsp
 	
 	# epilog
 	mov %rbp, %rsp # recover old stack pointer (RSP -- top of stack) 
