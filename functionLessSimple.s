@@ -29,11 +29,6 @@ _main:
 	pop	%rbp
 	ret
 	
-	
-# int add3(int a) {
-#     return a;
-# }
-
 add3:
     # prolog
 	push	%rbp    # save old value of RBP (base pointer register)
