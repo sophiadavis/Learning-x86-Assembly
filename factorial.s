@@ -1,4 +1,3 @@
-# http://www.cs.princeton.edu/courses/archive/spr11/cos217/lectures/15AssemblyFunctions.pdf
 .text
 
 .globl	_main
@@ -13,15 +12,13 @@ _main:
 	push %rdx 
 	
 	# push parameters
-	push $5
-	push $4
 	push $3
 	
 	# call function
-	call add3
+	call factorial
 	
 	# pop parameters
-	add $24, %rsp
+	add $8, %rsp
 
     # restore caller-save registers	
 	pop %rdx 
@@ -32,12 +29,7 @@ _main:
 	pop	%rbp
 	ret
 
-# int add3(int a, int b, int c) { 
-#     int d; 
-#     d = a + b + c; 
-#     return d; 
-# }
-add3:
+factorial:
     # prolog
 	push	%rbp    # save old value of RBP (base pointer register)
 	mov	%rsp, %rbp  # and set current RBP
@@ -61,19 +53,17 @@ add3:
 	# copy local variable into return value
 	mov -32(%rbp), %rax
 	
-	#add $8, %rsp ## HELP
-	
 	# restore callee-save registers
 	mov -24(%rbp), %rdi 
 	mov -16(%rbp), %rsi
 	mov -8(%rbp), %rbx
 	
-	#add $24, %rsp ## HELP
+	add $32, %rsp
 	
 	# epilog
 	mov %rbp, %rsp # recover old stack pointer (RSP -- top of stack) 
 	pop %rbp # ?? recover old RBP (base of old frame)
-		
+	
 	# return
 	ret
 	
