@@ -7,11 +7,6 @@ _main:
 	push	%rbp
 	mov	%rsp, %rbp
 	
-	# save caller-save registers
-	push %rax 
-	push %rcx 
-	push %rdx 
-	
 	# push parameters
 	push $5
 	push $4
@@ -22,13 +17,9 @@ _main:
 	
 	# pop parameters
 	add $24, %rsp
-
-    # restore caller-save registers	
-	pop %rdx 
-    pop %rcx 
-    pop %rax 
 	
 	# epilog
+	mov	%rsp, %rbp
 	pop	%rbp
 	ret
 
@@ -42,11 +33,6 @@ add3:
 	push	%rbp    # save old value of RBP (base pointer register)
 	mov	%rsp, %rbp  # and set current RBP
 	
-	# save callee-save registers
-	#push %rbx
-	#push %rsi
-	#push %rdi
-	
 	# allocate space for local variable d
 	sub $8, %rsp
 	
@@ -56,19 +42,12 @@ add3:
 	add 32(%rbp), %rax
 	
 	# move value into local variable
-	mov %rax, -32(%rbp)
+	mov %rax, -8(%rbp) #-32(%rbp)
 	
 	# copy local variable into return value
-	mov -32(%rbp), %rax
+	mov -8(%rbp), %rax #-32(%rbp), %rax
 	
-	#add $8, %rsp ## HELP
-	
-	# restore callee-save registers
-	mov -24(%rbp), %rdi 
-	mov -16(%rbp), %rsi
-	mov -8(%rbp), %rbx
-	
-	#add $24, %rsp ## HELP
+	add $8, %rsp # we dont need space for local variable anymore -- back up RSP
 	
 	# epilog
 	mov %rbp, %rsp # recover old stack pointer (RSP -- top of stack) 

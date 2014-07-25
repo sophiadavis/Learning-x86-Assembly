@@ -7,9 +7,9 @@ _main:
 	mov	%rsp, %rbp
 	
 	# save caller-save registers
-	push %rax 
-	push %rcx 
-	push %rdx 
+	#push %rax 
+	#push %rcx 
+	#push %rdx 
 	
 	# push parameters
 	push $3
@@ -21,9 +21,9 @@ _main:
 	add $8, %rsp
 
     # restore caller-save registers	
-	pop %rdx 
-    pop %rcx 
-    pop %rax 
+	#pop %rdx 
+    #pop %rcx 
+    #pop %rax 
 	
 	# epilog
 	pop	%rbp

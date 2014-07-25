@@ -1,17 +1,20 @@
-	.section	__TEXT,__text,regular,pure_instructions
-	.globl	_main
-	# .align	4, 0x90
+.text
+
+.globl	_main
 _main:
-	pushq	%rbp
-	movq	%rsp, %rbp
-	movl	$0, %eax
+	push	%rbp
+	mov 	%rsp, %rbp
+	mov	    $0, %rax
+
 loop_branch:
-	cmpl    $10, %eax
+	cmp     $10, %rax
 	jne     add_one
-	jmp finish_branch
+	jmp     finish_branch # otherwise, execution will continue with line 15
+
 add_one:
-    addl    $1, %eax
-    jmp loop_branch
+    add     $1, %rax
+    jmp     loop_branch
+
 finish_branch: 
 	popq	%rbp
 	ret

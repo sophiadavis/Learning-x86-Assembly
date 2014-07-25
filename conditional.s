@@ -1,17 +1,15 @@
-	.section	__TEXT,__text,regular,pure_instructions
-	.globl	_main
-	# .align	4, 0x90
+.text
+.globl	_main
 _main:
-	pushq	%rbp
-	movq	%rsp, %rbp
-	movl	$42, %eax
-	addl    $3, %eax
-	cmpl    $46, %eax
+	push   	%rbp
+	mov 	%rsp, %rbp
+	mov	    $42, %rax
+	add     $3, %rax
+	cmp     $46, %rax
 	jne     else_branch
 	jmp     finish_branch
 else_branch:
-    movl    $69, %eax
+    mov    $69, %rax
 finish_branch: 
-	# movl	$0, -4(%rbp) -- dont need 
 	popq	%rbp
 	ret

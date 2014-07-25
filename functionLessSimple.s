@@ -26,6 +26,7 @@ _main:
 	add $24, %rsp
 	
 	# epilog
+	mov	%rsp, %rbp
 	pop	%rbp
 	ret
 	
