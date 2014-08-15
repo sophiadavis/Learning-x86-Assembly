@@ -14,7 +14,7 @@ _main:
 	
 	# call function
 	call add3
-	
+		
 	# pop parameters
 	add $24, %rsp
 	
@@ -41,11 +41,13 @@ add3:
 	add 24(%rbp), %rax
 	add 32(%rbp), %rax
 	
+	
+	### Not actually necessary...
 	# move value into local variable
-	mov %rax, -8(%rbp) #-32(%rbp)
+	mov %rax, -8(%rbp)
 	
 	# copy local variable into return value
-	mov -8(%rbp), %rax #-32(%rbp), %rax
+	mov -8(%rbp), %rax
 	
 	add $8, %rsp # we dont need space for local variable anymore -- back up RSP
 	

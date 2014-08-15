@@ -9,9 +9,9 @@ _main:
 	
 	######## PAIN!!!!!
 	# save caller-save registers
-	push %rax 
-	push %rcx 
-	push %rdx 
+	pushq %rax 
+	pushq %rcx 
+	pushq %rdx 
 	
 	# push parameters
 	push $5
@@ -26,9 +26,9 @@ _main:
 
     ######## PAIN!!!!!
     # restore caller-save registers	
-	pop %rdx 
-    pop %rcx 
-    pop %rax 
+	popq %rdx 
+    popq %rcx 
+    popq %rax 
 	
 	# epilog
 	mov	%rsp, %rbp # IS THIS A PROBLEM?
@@ -47,9 +47,9 @@ add3:
 	
 	######## PAIN!!!!!
 	# save callee-save registers
-	push %rbx
-	push %rsi
-	push %rdi
+	pushq %rbx ############### How do I know how much space is being used for this? -- it pushes 1 word?
+	pushq %rsi
+	pushq %rdi
 	
 	# allocate space for local variable d
 	sub $8, %rsp
@@ -67,9 +67,9 @@ add3:
 	
 	######## PAIN!!!!!
 	# restore callee-save registers
-	mov -24(%rbp), %rdi 
-	mov -16(%rbp), %rsi
-	mov -8(%rbp), %rbx
+	movq -24(%rbp), %rdi 
+	movq -16(%rbp), %rsi
+	movq -8(%rbp), %rbx
 	
 	######## PAIN!!!!!
 	add $32, %rsp ## HELP
