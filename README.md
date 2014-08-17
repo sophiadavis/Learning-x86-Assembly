@@ -10,4 +10,5 @@ Wishing that I knew more about how programs run under the hood, I spent a couple
 
 In these programs (**\*disclaimer\*** not all of them work, sorry!), I explore how to use conditionals, loops and constants, and try to implement functions according to the calling convention (how to manage parameters, registers, and the stack while calling and returning from functions such that no data is overwritten). I got stuck implementing the factorial function.
 
-To run: <code> gcc file.s -o output </code> then <code>./output</code>
+To run: <code> gcc file.s -o output </code> then <code>./output</code>  
+The only tangible thing these programs do is modify the return value of the main function in some way. You can check this return value by executing <code> echo $? </code>.
